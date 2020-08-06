@@ -6,6 +6,7 @@ bcftools/1.8 (http://www.htslib.org/download/)
 gdc-client/1.3 (https://gdc.cancer.gov/access-data/gdc-data-transfer-tool)
 Tandem Repeat Finder (https://tandem.bu.edu/trf/trf.download.html)
 Also download hg38.fa (http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/)
+
 python, python3, g++, xgboost, sklearn, numpy.
 ================================================================
 To Download files from TCGA using gdc-client/1.3 
@@ -26,17 +27,25 @@ Extract out the fasta sequence for each chromosome from a BAM file downloaded fr
 Example shows extracting out fasta sequence for chromosome 1 and then the tandem repeats using benson trf 
  
 samtools view -b file_name.bam chr1>chr1.bam
+
 samtools mpileup -E -uf ~/hg38.fa chr1.bam > chr1.mpileup
+
 bcftools call -mv -Oz chr1.mpileup>chr1.vcf.gz
+
 tabix -p vcf chr1.vcf.gz
+
 samtools faidx ~/hg38.fa chr1|bcftools consensus chr1.vcf.gz -o chr1.fa
+
 chmod +x ~/trf409.legacylinux64
+
 ~/trf409.legacylinux64 chr1.fa 2 7 7 80 10 50 500 -h -d -l 6
+
 mv chr1.fa.2.7.7.80.10.50.500.dat chr1.dat
 
 Each row in chr1.dat stores relevant information regarding a single tandem repeat region of chromosome 1 in the sample being analyzed
 ================================================================
 Mutation Estimation (Tang et al.)
+
 ~/tang chr1.dat chr1_data.txt
 ================================================================
 Align the regions to the repeats found in chr1 of hg38.fa
@@ -44,6 +53,7 @@ Align the regions to the repeats found in chr1 of hg38.fa
 python PPA/ppa.py chr1_data.txt align_check_1.txt 1 (in general replace 1 by chromosome number everywhere)
 
 Create a data file with an aligned mutation profile for chromosome 1
+
 python readalign.py align_check_1.txt out_align_check_1.txt
 
 out_align_check_1.txt is the aligned mutation profile for chromosome 1 for the given sample
