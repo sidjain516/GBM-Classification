@@ -1,0 +1,10 @@
+ACCCGG, 0, 9
+AATA, 0, 9
+GT, 2, 18
+GTT, 2, 21
+TG, 0, 19
+ACCCGG, 0, 9
+AATA, 0, 9
+GT, 2, 18
+GTT, 2, 21
+TG, 0, 19
