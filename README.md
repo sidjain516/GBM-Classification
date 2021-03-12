@@ -86,7 +86,7 @@ For example in order to add prostate cancer, the command would be
 PRAD = ("prostate","prostate",chromosomes)
 
 To run the pairwise classifier for generating the seriation matrix use
-2020_June_cancer.py
+2020_June_cancer_XGB.py
 
 To create cancer risk profiles using a gradient boosting based multiclassfier use
 2020_June_cancer_XGB_multi.py
